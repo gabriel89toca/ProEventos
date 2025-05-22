@@ -1,0 +1,17 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "watch-run",
+            "command": "dotnet",
+            "args": [
+                "watch",
+                "run"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
