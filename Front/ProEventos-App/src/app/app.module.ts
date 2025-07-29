@@ -23,7 +23,7 @@ import { CollapseDirective, CollapseModule } from 'ngx-bootstrap/collapse';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CollapseModule
+    CollapseModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
