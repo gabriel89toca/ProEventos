@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ProEventos.Domain;
+using ProEventos.Persistence.Contratos;
 
 namespace ProEventos.Application.Contratos
 {
-    public interface IEventoService
+    public interface IEventoService : IEventosPersist
     {
         Task<Evento> AddEvento(Evento model);
         Task<Evento> UpdateEvento(int eventoId, Evento model);
