@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProEventos.Persistence;
 using ProEventos.Persistence.Contextos;
 
 #nullable disable
@@ -12,7 +11,7 @@ using ProEventos.Persistence.Contextos;
 namespace ProEventos.Persistence.Migrations
 {
     [DbContext(typeof(ProEventosContext))]
-    [Migration("20250826144136_Initial")]
+    [Migration("20251030143407_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,26 +29,21 @@ namespace ProEventos.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImagemURL")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Local")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("QtdPessoas")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Telefone")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Tema")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -73,11 +67,13 @@ namespace ProEventos.Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Preco")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -93,23 +89,18 @@ namespace ProEventos.Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImagemURL")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("MiniCurriculo")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Telefone")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -142,14 +133,12 @@ namespace ProEventos.Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("PalestranteId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("URL")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

@@ -15,7 +15,6 @@ namespace ProEventos.Persistence.Contextos
         public DbSet<Palestrante> Palestrantes { get; set; }
         public DbSet<PalestranteEvento> PalestrantesEventos { get; set; }
         public DbSet<RedeSocial> RedesSociais { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PalestranteEvento>()
