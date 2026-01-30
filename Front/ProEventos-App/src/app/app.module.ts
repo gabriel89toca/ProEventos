@@ -11,6 +11,7 @@ import { PalestrantesComponent } from './Palestrantes/Palestrantes.component';
 
 import { NavComponent } from './nav/nav.component';
 import { CollapseDirective, CollapseModule } from 'ngx-bootstrap/collapse';
+import { EventoService } from './services/evento.service';
 
 
 
@@ -29,7 +30,7 @@ import { CollapseDirective, CollapseModule } from 'ngx-bootstrap/collapse';
     CollapseModule.forRoot(),
     FormsModule
   ],
-  providers: [],
+  providers: [EventoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

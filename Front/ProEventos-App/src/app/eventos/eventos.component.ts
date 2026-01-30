@@ -1,19 +1,22 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { EventoService } from '../services/evento.service';
+import { Evento } from '../models/Evento';
 
 @Component({
   selector: 'app-eventos',
   templateUrl: './eventos.component.html',
-  styleUrls: ['./eventos.component.scss']
+  styleUrls: ['./eventos.component.scss']//,
+  //providers: [EventoService]
 })
 export class EventosComponent implements OnInit {
 
-  public eventos: any = [];
-  public eventosFiltrados: any = [];
-  widthImg: number = 100;
-  marginImg:  number = 2;
-  exibirImagem: boolean = true;
+  public eventos: Evento[] = [];
+  public eventosFiltrados: Evento[] = [];
+  public widthImg: number = 100;
+  public marginImg:  number = 2;
+  public exibirImagem: boolean = true;
   private _filtroLista: string = '';
+  
 
   public get filtroLista() {
     return this._filtroLista;
@@ -25,7 +28,7 @@ export class EventosComponent implements OnInit {
      this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
   }
 
-  filtrarEventos(filtrarPor: string): any {
+  public filtrarEventos(filtrarPor: string): Evento[] {
   filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.eventos.filter(
       (evento: any) => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1 || 
@@ -33,15 +36,13 @@ export class EventosComponent implements OnInit {
     )
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private eventoService: EventoService) { }
 
-  
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.GetEventos();
   }
 
-  alterarImagem(){
+  public alterarImagem(){
     this.exibirImagem = !this.exibirImagem;
   }
 
@@ -50,9 +51,9 @@ export class EventosComponent implements OnInit {
    */
   public GetEventos(): void {
 
- this.http.get('https://localhost:7128/api/Eventos').subscribe(
-      Response => {
-        this.eventos = Response;
+ this.eventoService.getEventos().subscribe(
+      (_eventos: Evento[]) => {
+        this.eventos = _eventos;
         this.eventosFiltrados = this.eventos
       },
       error => console.log(error)
