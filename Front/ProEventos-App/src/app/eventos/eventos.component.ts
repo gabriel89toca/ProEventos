@@ -51,13 +51,30 @@ export class EventosComponent implements OnInit {
    * GetEventos
    */
   public GetEventos(): void {
-    this.eventoService.getEventos().subscribe(
-      (_eventos: Evento[]) => {
-        this.eventos = _eventos;
+    this.eventoService.getEventos().subscribe({
+      next: (eventosRes: Evento[]) => {
+        this.eventos = eventosRes;
+        this.eventosFiltrados = this.eventos;
+      },
+      error: (error: any)=> console.log(error)
+    });
+      /*  criar obserble
+      const observer = {
+      next: (eventosRes: Evento[]) => {
+        this.eventos = eventosRes;
+        this.eventosFiltrados = this.eventos;
+      },
+      error: (error: any)=> console.log(error),
+      complete: () => {}
+    }
+    this.eventoService.getEventos().subscribe(observer);
+      
+      (eventosRes: Evento[]) => {
+        this.eventos = eventosRes;
         this.eventosFiltrados = this.eventos
       },
-      error => console.log(error)
-    ); 
+      error => console.log(error) 
+    ); */
 
 /* this.eventos = [{
       Tema: "Angular",
