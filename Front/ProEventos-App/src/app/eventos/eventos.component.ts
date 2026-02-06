@@ -12,19 +12,20 @@ export class EventosComponent implements OnInit {
 
   public eventos: Evento[] = [];
   public eventosFiltrados: Evento[] = [];
+
   public widthImg: number = 100;
   public marginImg:  number = 2;
   public exibirImagem: boolean = true;
-  private _filtroLista: string = '';
+  private filtroListado: string = '';
   
 
-  public get filtroLista() {
-    return this._filtroLista;
+  public get filtroLista(): string {
+    return this.filtroListado;
   }
 
   
   public set filtroLista(value: string) {
-     this._filtroLista = value;
+     this.filtroListado = value;
      this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
   }
 
@@ -33,7 +34,7 @@ export class EventosComponent implements OnInit {
     return this.eventos.filter(
       (evento: any) => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1 || 
       evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -1
-    )
+    );
   }
 
   constructor(private eventoService: EventoService) { }
@@ -42,7 +43,7 @@ export class EventosComponent implements OnInit {
     this.GetEventos();
   }
 
-  public alterarImagem(){
+  public alterarImagem(): void {
     this.exibirImagem = !this.exibirImagem;
   }
 
@@ -50,8 +51,7 @@ export class EventosComponent implements OnInit {
    * GetEventos
    */
   public GetEventos(): void {
-
- this.eventoService.getEventos().subscribe(
+    this.eventoService.getEventos().subscribe(
       (_eventos: Evento[]) => {
         this.eventos = _eventos;
         this.eventosFiltrados = this.eventos
@@ -59,20 +59,16 @@ export class EventosComponent implements OnInit {
       error => console.log(error)
     ); 
 
-/*     this.eventos = [
-    {
+/* this.eventos = [{
       Tema: "Angular",
       Local: "São Paulo"
-    },
-    {
+    },{
       Tema: "C#",
       Local: "Rio de Janeiro"
-    },
-        {
+    },{
       Tema: "Html",
       Local: "São Paulo"
-    }
-  ]*/
+    }]*/
   } 
 
 }
